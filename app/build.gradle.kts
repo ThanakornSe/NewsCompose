@@ -18,6 +18,8 @@ android {
         versionCode = ConfigurationData.versionCode
         versionName = ConfigurationData.versionName
 
+        buildConfigField(type = "String", name = "API_KEY", value = "${project.properties["API_KEY"]}")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true

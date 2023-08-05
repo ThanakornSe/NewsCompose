@@ -6,4 +6,5 @@ object AppConfig : AppConfiguration {
     override var isDebug: Boolean = false
     override var baseApiUrl: String? = null
     override var buildVersion: String? = null
+    override var apiKey: String? = null
 }

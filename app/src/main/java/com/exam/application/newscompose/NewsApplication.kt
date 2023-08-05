@@ -32,6 +32,7 @@ class NewsApplication : Application() {
             isDebug = BuildConfig.DEBUG
             baseApiUrl = BuildConfig.BASE_URL
             buildVersion = BuildConfig.VERSION_NAME
+            apiKey = BuildConfig.API_KEY
         }
     }
 
