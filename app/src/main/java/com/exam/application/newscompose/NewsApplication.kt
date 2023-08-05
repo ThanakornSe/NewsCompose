@@ -14,6 +14,7 @@ class NewsApplication : Application() {
         super.onCreate()
 
         initKoin()
+        setupAppConfig()
 
     }
 

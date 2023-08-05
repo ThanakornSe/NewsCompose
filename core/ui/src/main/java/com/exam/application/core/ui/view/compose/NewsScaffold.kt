@@ -40,7 +40,7 @@ fun NewsScaffold(
 @ExperimentalMaterial3Api
 @Preview(showBackground = true)
 @Composable
-fun DefaultMcScaffoldPreview() {
+fun DefaultNewsScaffoldPreview() {
     AppTheme {
         NewsScaffold { contentPadding ->
             // Screen content
