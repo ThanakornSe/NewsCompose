@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.ir.backend.js.compile
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {
@@ -26,7 +28,7 @@ android {
         debug {
             isDebuggable = true
             isMinifyEnabled = false
-            buildConfigField(type = "String", name = "API_URL", value = "https://newsapi.org")
+            buildConfigField(type = "String", name = "BASE_URL", value = "\"https://newsapi.org/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -34,28 +36,26 @@ android {
         }
         release {
             isMinifyEnabled = false
-            buildConfigField(type = "String", name = "API_URL", value = "https://newsapi.org")
+            buildConfigField(type = "String", name = "BASE_URL", value = "\"https://newsapi.org/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
-    productFlavors {
-        val debugPrefix = ""
-    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ConfigurationData.jvmTarget
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = ConfigurationData.KotlinCompilerExtensionVersion
     }
     packaging {
         resources {
@@ -77,13 +77,17 @@ dependencies {
     lifecycle()
     koin()
 
+    retrofit()
+    implementation(platform(Dependencies.OKHTTP_BOM))
+    moshi()
+
     jetpackCompose()
     implementation(platform(Dependencies.COMPOSE_BOM))
 
-
+    implementation(Dependencies.TIMBER)
 
     test()
     androidTestImplementation(platform(Dependencies.COMPOSE_BOM))
-
+    testCompose()
 
 }

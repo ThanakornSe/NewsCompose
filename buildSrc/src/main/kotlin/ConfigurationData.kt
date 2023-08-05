@@ -6,4 +6,6 @@ object ConfigurationData {
     const val targetSdk= 33
     const val versionCode = 1
     const val versionName = "1.0"
+    const val KotlinCompilerExtensionVersion = "1.4.3"
+    const val jvmTarget = "17"
 }

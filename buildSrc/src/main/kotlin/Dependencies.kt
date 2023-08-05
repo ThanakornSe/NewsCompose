@@ -8,14 +8,18 @@ object Dependencies {
     const val ANDROID_BROWSER = "androidx.browser:browser:${Versions.Androidx.BROWSER}"
     const val ANDROID_MATERIAL = "com.google.android.material:material:${Versions.MATERIAL_ANDROID}"
 
-    const val ACTIVITY_COMPOSE = "androidx.activity:activity-compose:${Versions.Compose.ACTIVITY_COMPOSE}"
+    const val ACTIVITY_COMPOSE = "androidx.activity:activity-compose:${Versions.Compose.COMPOSE_ACTIVITY_VERSION}"
     const val COMPOSE_VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.Compose.COMPOSE_VIEWMODEL_VERSION}"
-    const val COMPOSE_UI = "androidx.compose.ui:ui"
+    const val COMPOSE_LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.Androidx.LIFECYCLE}"
+    const val COMPOSE_UI = "androidx.compose.ui:ui:${Versions.Compose.COMPOSE_UI_VERSION}"
     const val COMPOSE_BOM = "androidx.compose:compose-bom:${Versions.Compose.COMPOSE_BOMB}"
-    const val COMPOSE_UI_GRAPHIC = "androidx.compose.ui:ui-graphics"
-    const val COMPOSE_PREVIEW = "androidx.compose.ui:ui-tooling-preview"
-    const val COMPOSE_MATERIAL_3 = "androidx.compose.material3:material3"
+    const val COMPOSE_UI_GRAPHIC = "androidx.compose.ui:ui-graphics:${Versions.Compose.COMPOSE_UI_VERSION}"
+    const val COMPOSE_PREVIEW = "androidx.compose.ui:ui-tooling-preview:${Versions.Compose.COMPOSE_UI_VERSION}"
+    const val COMPOSE_MATERIAL_3 = "androidx.compose.material3:material3:${Versions.Compose.COMPOSE_MATERIAL_3_VERESION}"
+    const val COMPOSE_MATERIAL_2_ICON_CORE = "androidx.compose.material:material-icons-core:${Versions.Compose.COMPOSE_MATERIAL_2_VERSION}"
+    const val COMPOSE_MATERIAL_2_ICON_EXTENED = "androidx.compose.material:material-icons-extended:${Versions.Compose.COMPOSE_MATERIAL_2_VERSION}"
     const val COMPOSE_NAVIGATION = "androidx.navigation:navigation-compose:${Versions.NavigationCompose.NAVIGATION_COMPOSE_VERSION}"
+    const val COMPOSE_WINDOW_SIZE_UTIL = "androidx.compose.material3:material3-window-size-class:${Versions.Compose.COMPOSE_MATERIAL_3_VERESION}"
     const val COIL_COMPOSE = "io.coil-kt:coil-compose:${Versions.COIL_COMPOSE_VERSION}"
 
     const val KOIN_CORE = "io.insert-koin:koin-core:${Versions.Koin.KOIN_ANDROID_VERSION}"
@@ -31,10 +35,10 @@ object Dependencies {
     const val GMS_MAP = "com.google.android.gms:play-services-maps:${Versions.GMS_MAP}"
     const val CRASHLYTICS = "com.crashlytics.sdk.android:crashlytics:${Versions.CRASHLYTICS}"
 
-    const val ANDROID_LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime:${Versions.Androidx.LIFECYCLE}"
+    const val ANDROID_LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Androidx.LIFECYCLE}"
     const val ANDROID_LIFECYCLE_VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Androidx.LIFECYCLE}"
-    const val ANDROID_LIFECYCLE_EX = "androidx.lifecycle:lifecycle-extensions:${Versions.Androidx.LIFECYCLE}"
     const val ANDROID_LIFECYCLE_LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Androidx.LIFECYCLE}"
+    const val ANDROID_LIFECYCLE_SAVED_STATE = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.Androidx.LIFECYCLE}"
 
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
 
@@ -44,9 +48,13 @@ object Dependencies {
     const val MOSHI = "com.squareup.moshi:moshi-kotlin:${Versions.MOSHI}"
     const val MOSHI_CODEGEN = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.MOSHI}"
 
+    const val OKHTTP_BOM = "com.squareup.okhttp3:okhttp-bom:${Versions.OKHTTP3}"
+    const val OKHTTP = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP3}"
+    const val OKHTTP_LOGGER = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP3}"
+
     const val KOTLINX_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KOTLIN_COROUTINE_CORE}"
     const val COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES_ANDROID}"
-    const val OKHTTP_LOGGER = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP3}"
+
 
     const val FIREBASE_CORE = "com.google.firebase:firebase-core:${Versions.Firebase.CORE}"
     const val FIREBASE_ADS = "com.google.firebase:firebase-ads:${Versions.Firebase.ADS}"
@@ -56,8 +64,8 @@ object Dependencies {
     const val TEST_ANDROID_EX_JUNIT = "androidx.test.ext:${Versions.test.JUNIT_EXT}"
     const val TEST_ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.test.ESPRESSO_CORE}"
     const val TEST_COMPOSE_JUNIT_4 = "androidx.compose.ui:ui-test-junit4"
-    const val DEBUG_COMPOSE_TOOLING = "androidx.compose.ui:ui-tooling"
-    const val DEBUG_TEST_MANIFEST = "androidx.compose.ui:ui-test-manifest"
+    const val DEBUG_COMPOSE_TOOLING = "androidx.compose.ui:ui-tooling:${Versions.Compose.COMPOSE_UI_VERSION}"
+    const val DEBUG_TEST_MANIFEST = "androidx.compose.ui:ui-test-manifest:${Versions.Compose.COMPOSE_UI_VERSION}"
 }
 
 fun DependencyHandler.firebase() {
@@ -90,9 +98,9 @@ fun DependencyHandler.coroutine() {
 
 fun DependencyHandler.lifecycle() {
     implementation(Dependencies.ANDROID_LIFECYCLE_RUNTIME)
-    implementation(Dependencies.ANDROID_LIFECYCLE_EX)
     implementation(Dependencies.ANDROID_LIFECYCLE_VIEWMODEL)
     implementation(Dependencies.ANDROID_LIFECYCLE_LIVEDATA)
+    implementation(Dependencies.ANDROID_LIFECYCLE_SAVED_STATE)
 }
 
 fun DependencyHandler.jetpackCompose() {
@@ -103,17 +111,22 @@ fun DependencyHandler.jetpackCompose() {
     implementation(Dependencies.COMPOSE_PREVIEW)
     implementation(Dependencies.COMPOSE_MATERIAL_3)
     implementation(Dependencies.COMPOSE_NAVIGATION)
+    implementation(Dependencies.COMPOSE_MATERIAL_2_ICON_CORE)
+    implementation(Dependencies.COMPOSE_MATERIAL_2_ICON_EXTENED)
+    implementation(Dependencies.COMPOSE_WINDOW_SIZE_UTIL)
+    implementation(Dependencies.COMPOSE_LIFECYCLE_RUNTIME)
 }
 
 fun DependencyHandler.retrofit() {
     implementation(Dependencies.RETROFIT)
     implementation(Dependencies.RETROFIT_CONVERTER_MOSHI)
+    implementation(Dependencies.OKHTTP)
     implementation(Dependencies.OKHTTP_LOGGER)
 }
 
 fun DependencyHandler.moshi() {
     implementation(Dependencies.MOSHI)
-    ksp(Dependencies.MOSHI_CODEGEN)
+    kapt(Dependencies.MOSHI_CODEGEN)
 }
 
 fun DependencyHandler.coilCompose() {
@@ -125,6 +138,9 @@ fun DependencyHandler.test() {
     androidTestImplementation(Dependencies.TEST_ANDROID_EX_JUNIT)
     androidTestImplementation(Dependencies.TEST_ESPRESSO_CORE)
     androidTestImplementation(Dependencies.TEST_COMPOSE_JUNIT_4)
+}
+
+fun DependencyHandler.testCompose() {
     debugImplementation(Dependencies.DEBUG_COMPOSE_TOOLING)
     debugImplementation(Dependencies.DEBUG_TEST_MANIFEST)
 }
@@ -145,8 +161,8 @@ fun DependencyHandler.debugImplementation(depName: String) {
     add("debugImplementation", depName)
 }
 
-private fun DependencyHandler.ksp(depName: String) {
-    add("ksp", depName)
+private fun DependencyHandler.kapt(depName: String) {
+    add("kapt", depName)
 }
 
 private fun DependencyHandler.compileOnly(depName: String) {

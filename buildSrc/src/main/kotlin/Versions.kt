@@ -18,7 +18,10 @@ object Versions {
     }
 
     object Compose {
-        const val ACTIVITY_COMPOSE = "1.7.2"
+        const val COMPOSE_ACTIVITY_VERSION = "1.7.2"
+        const val COMPOSE_MATERIAL_3_VERESION = "1.1.1"
+        const val COMPOSE_MATERIAL_2_VERSION = "1.4.3"
+        const val COMPOSE_UI_VERSION = "1.4.3"
         const val COMPOSE_BOMB = "2023.03.00"
         const val COMPOSE_VIEWMODEL_VERSION = "2.6.1"
     }
