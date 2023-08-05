@@ -40,7 +40,12 @@ android {
         jvmTarget = ConfigurationData.jvmTarget
     }
     buildFeatures {
+        compose = true
         buildConfig = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = ConfigurationData.KotlinCompilerExtensionVersion
     }
 }
 
