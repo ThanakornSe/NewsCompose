@@ -22,10 +22,8 @@
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/newsdata" />
             <option value="$PROJECT_DIR$/domain" />
-            <option value="$PROJECT_DIR$/domain/newsdetail" />
             <option value="$PROJECT_DIR$/domain/newsfeed" />
             <option value="$PROJECT_DIR$/feature" />
-            <option value="$PROJECT_DIR$/feature/newsdetail" />
             <option value="$PROJECT_DIR$/feature/newsfeed" />
           </set>
         </option>

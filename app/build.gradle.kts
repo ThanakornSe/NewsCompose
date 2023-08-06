@@ -73,7 +73,6 @@ dependencies {
     implementation(project(":core:resource"))
     implementation(project(":core:util"))
     implementation(project(":feature:newsfeed"))
-    implementation(project(":feature:newsdetail"))
 
     appCompat()
     coroutine()

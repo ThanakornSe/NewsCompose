@@ -5,14 +5,10 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -21,11 +17,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
@@ -34,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.exam.application.core.base.BaseUiState
 import com.exam.application.core.resource.theme.AppTheme
-import com.exam.application.core.ui.view.compose.NewsNavigationBackIcon
 import com.exam.application.core.ui.view.compose.NewsScaffold
 import com.exam.application.core.ui.view.compose.NewsTopAppBar
 import com.exam.application.core.ui.view.compose.NewsTopAppBarColors
@@ -47,7 +40,7 @@ fun NewsFeedScreen(
     modifier: Modifier = Modifier,
     uiState: BaseUiState<NewsFeedUiState>,
     onShareClick: (String) -> Unit = {},
-    onClickToDetailScreen: (String) -> Unit = {},
+    onClickToDetailScreen: (String, Int) -> Unit = { _, _ -> },
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -65,17 +58,10 @@ fun NewsFeedScreen(
             },
         topBar = {
             NewsTopAppBar(
-                title = "News",
+                title = uiState.mainUiState?.toolbarTitleFeed ?: "",
                 colors = NewsTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary
                 ),
-//                navigationIcon = {
-//                    onBackClick?.let {
-//                        NewsNavigationBackIcon {
-//                            onBackClick()
-//                        }
-//                    }
-//                }
             )
         },
         containerColor = MaterialTheme.colorScheme.surface
@@ -124,13 +110,14 @@ fun NewsFeedScreen(
                             NewsFeedContentCard(
                                 title = data.title,
                                 author = data.author,
-                                desc = data.description,
+                                desc = data.description ?: data.content,
                                 sourceName = data.sourceName,
                                 thumbNailImage = data.urlToImage,
                                 timeAgo = data.publishedAt,
                                 url = data.url,
-                                seeDetailActionClick = {
-                                    onClickToDetailScreen.invoke(it)
+                                page = data.page,
+                                seeDetailActionClick = { id, page ->
+                                    onClickToDetailScreen.invoke(id, page)
                                 },
                                 onShareClick = {
                                     onShareClick(it)

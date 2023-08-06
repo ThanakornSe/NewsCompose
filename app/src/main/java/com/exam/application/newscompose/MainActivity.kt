@@ -9,16 +9,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import androidx.navigation.navigation
 import com.exam.application.core.resource.theme.AppTheme
 import com.exam.application.core.base.BaseComponentActivity
 import com.exam.application.core.data.route.Route
-import com.exam.application.feature.newsdetail.navgraph.newsDetailNavGraph
 import com.exam.application.feature.newsfeed.navgraph.newsFeedNavGraph
 
 @ExperimentalMaterial3Api
@@ -48,8 +43,6 @@ fun NewsComposeAppScreen() {
         startDestination = Route.NewsFeedNavGraph.route,
     ) {
         newsFeedNavGraph(navController)
-
-        newsDetailNavGraph(navController)
     }
 }
 

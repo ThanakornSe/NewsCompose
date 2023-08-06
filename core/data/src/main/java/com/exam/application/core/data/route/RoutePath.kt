@@ -1,5 +1,7 @@
 package com.exam.application.core.data.route
 
+import com.squareup.moshi.Moshi
+
 object RoutePath {
     //Screens
     const val NEWS_FEED_NAV_GRAPH = "newsFeedNavGraph"
@@ -7,8 +9,7 @@ object RoutePath {
     const val DETAIL_SCREEN_NAV_GRAPH = "detailScreenNavGraph"
     const val DETAIL_SCREEN_FRAGMENT = "detailScreenFragment"
     const val DETAIL_ARG_NEWS_ID = "newsId"
+    const val DETAIL_ARG_WORD = "word"
+    const val DETAIL_ARG_PAGE = "page"
 
-    const val PAGE_SIZE = 20
-    const val KEY_API = ""
-    const val WEB_API = "https://api.rawg.io/api/"
 }

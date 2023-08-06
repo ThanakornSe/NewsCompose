@@ -44,7 +44,8 @@ class GetNewsFeedUseCase(private val repository: NewsFeedRepository) {
                                 ),
                                 title = article.title,
                                 url = article.url,
-                                urlToImage = article.urlToImage
+                                urlToImage = article.urlToImage,
+                                page = pageNext
                             )
                         },
                         status = response.status,

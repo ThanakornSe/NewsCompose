@@ -47,8 +47,9 @@ fun NewsFeedContentCard(
     sourceName: String? = null,
     thumbNailImage: String? = null,
     timeAgo: String? = null,
-    url:String? = null,
-    seeDetailActionClick: (String) -> Unit = {},
+    url: String? = null,
+    page: Int? = null,
+    seeDetailActionClick: (String, Int) -> Unit = { id, page ->  },
     onShareClick: (String) -> Unit = {}
 ) {
 
@@ -108,14 +109,9 @@ fun NewsFeedContentCard(
                             .aspectRatio(ratio = 16 / 9f)
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .clickable {
-                                title?.let {
-                                    seeDetailActionClick(Route.DetailScreenFragment.createRoute(it))
-                                }
-                            },
+                            .clip(RoundedCornerShape(8.dp)),
                         model = null,
-                        contentScale = ContentScale.FillHeight,
+                        contentScale = ContentScale.FillBounds,
                         placeholder = painterResource(id = R.drawable.ic_placeholder_image),
                         contentDescription = null,
                     )
@@ -130,7 +126,7 @@ fun NewsFeedContentCard(
                             .clip(RoundedCornerShape(8.dp))
                             .clickable {
                                 title?.let {
-                                    seeDetailActionClick(it)
+                                    seeDetailActionClick(it,page ?: 1)
                                 }
                             },
                         model = thumbNailImage,
@@ -152,7 +148,7 @@ fun NewsFeedContentCard(
                 .padding(horizontal = 16.dp)
                 .clickable {
                     title?.let {
-                        seeDetailActionClick(Route.DetailScreenFragment.createRoute(it))
+                        seeDetailActionClick(it,page ?: 1)
                     }
                 },
             text = title ?: "",
@@ -171,7 +167,7 @@ fun NewsFeedContentCard(
                 .padding(horizontal = 16.dp)
                 .clickable {
                     title?.let {
-                        seeDetailActionClick(it)
+                        seeDetailActionClick(it,page ?: 1)
                     }
                 },
             style = MaterialTheme.typography.bodyMedium,

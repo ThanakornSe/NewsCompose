@@ -16,5 +16,6 @@ data class ArticleModel(
     val sourceModel: SourceModel? = null,
     val title: String? = null,
     val url: String? = null,
-    val urlToImage: String? = null
+    val urlToImage: String? = null,
+    val page: Int? = null
 ):Parcelable

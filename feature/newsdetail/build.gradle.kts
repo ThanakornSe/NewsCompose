@@ -56,13 +56,15 @@ dependencies {
     implementation(project(":core:resource"))
     implementation(project(":core:ui"))
     implementation(project(":data:newsdata"))
-    implementation(project(":domain:newsdetail"))
+    implementation(project(":domain:newsfeed"))
 
 
     appCompat()
     coroutine()
     lifecycle()
     koin()
+
+    coilCompose()
 
     jetpackCompose()
     implementation(platform(Dependencies.COMPOSE_BOM))
