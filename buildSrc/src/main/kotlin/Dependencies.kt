@@ -137,7 +137,7 @@ fun DependencyHandler.coilCompose() {
 
 fun DependencyHandler.test() {
     testImplementation(Dependencies.TEST_JUNIT)
-    androidTestImplementation(Dependencies.TEST_ANDROID_EX_JUNIT)
+    //androidTestImplementation(Dependencies.TEST_ANDROID_EX_JUNIT)
     androidTestImplementation(Dependencies.TEST_ESPRESSO_CORE)
     androidTestImplementation(Dependencies.TEST_COMPOSE_JUNIT_4)
 }

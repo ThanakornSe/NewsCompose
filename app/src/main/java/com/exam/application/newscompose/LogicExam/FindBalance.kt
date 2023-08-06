@@ -1,7 +1,9 @@
 package com.exam.application.newscompose.LogicExam
 
 fun main() {
-    val arr = intArrayOf(1, 3, 5, 7, 9)
+
+    val arr = readln().split(",").map { it.toInt() } //intArrayOf(1, 3, 5, 7, 9)
+
     val balanceIndex = findBalanceIndex(arr)
 
     if (balanceIndex != -1) {
@@ -11,7 +13,7 @@ fun main() {
     }
 }
 
-fun findBalanceIndex(arr: IntArray): Int {
+fun findBalanceIndex(arr: List<Int>): Int {
     val totalSum = arr.sum()
     var leftSum = 0
     var rightSum = 0
