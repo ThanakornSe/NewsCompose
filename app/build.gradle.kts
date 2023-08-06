@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.kotlin.ir.backend.js.compile
 
 plugins {
@@ -19,7 +20,9 @@ android {
         versionCode = ConfigurationData.versionCode
         versionName = ConfigurationData.versionName
 
-        buildConfigField(type = "String", name = "API_KEY", value = "${project.properties["API_KEY"]}")
+        val key = gradleLocalProperties(rootDir).getProperty("API_KEY")
+
+        buildConfigField(type = "String", name = "API_KEY", value = key)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
