@@ -3,6 +3,7 @@ package com.exam.application.newscompose
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -20,6 +21,7 @@ import com.exam.application.core.data.route.Route
 import com.exam.application.feature.newsdetail.navgraph.newsDetailNavGraph
 import com.exam.application.feature.newsfeed.navgraph.newsFeedNavGraph
 
+@ExperimentalMaterial3Api
 class MainActivity : BaseComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,7 @@ class MainActivity : BaseComponentActivity() {
     }
 }
 
+@ExperimentalMaterial3Api
 @Composable
 fun NewsComposeAppScreen() {
     val navController = rememberNavController()
@@ -51,6 +54,7 @@ fun NewsComposeAppScreen() {
 }
 
 @Preview(showBackground = true)
+@ExperimentalMaterial3Api
 @Composable
 fun GreetingPreview() {
     AppTheme {

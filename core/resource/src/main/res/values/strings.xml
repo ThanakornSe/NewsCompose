@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewsCompose</string>
+    <string name="news_feed_share_button">Share</string>
 </resources>

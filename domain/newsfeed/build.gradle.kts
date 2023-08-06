@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -48,7 +49,10 @@ dependencies {
     implementation(project(":core:util"))
     implementation(project(":core:data"))
     implementation(project(":core:network"))
+    implementation(project(":data:newsdata"))
 
+
+    kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.6.0")
     coroutine()
     lifecycle()
     koin()

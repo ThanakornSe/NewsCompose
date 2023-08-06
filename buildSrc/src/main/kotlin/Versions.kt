@@ -24,6 +24,7 @@ object Versions {
         const val COMPOSE_UI_VERSION = "1.4.3"
         const val COMPOSE_BOMB = "2023.03.00"
         const val COMPOSE_VIEWMODEL_VERSION = "2.6.1"
+        const val COMPOSE_PAGING_VERSION = "3.2.0"
     }
 
     object Firebase {
@@ -52,6 +53,6 @@ object Versions {
     const val TIMBER = "5.0.1"
 
     const val RETROFIT = "2.9.0"
-    const val MOSHI = "1.12.0"
+    const val MOSHI = "1.14.0"
     const val OKHTTP3 = "4.9.3"
 }

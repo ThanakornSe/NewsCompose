@@ -14,10 +14,10 @@ import com.exam.application.core.resource.theme.AppTheme
 @ExperimentalMaterial3Api
 @Composable
 fun NewsTopAppBarColors(
-    containerColor: Color = MaterialTheme.colorScheme.background,
-    navigationIconContentColor: Color = MaterialTheme.colorScheme.onBackground,
-    titleContentColor: Color = MaterialTheme.colorScheme.onPrimary,
-    actionIconContentColor: Color = MaterialTheme.colorScheme.onBackground,
+    containerColor: Color = MaterialTheme.colorScheme.primary,
+    navigationIconContentColor: Color = Color.White,
+    titleContentColor: Color = Color.White,
+    actionIconContentColor: Color = Color.White,
 ): TopAppBarColors {
     return TopAppBarDefaults.centerAlignedTopAppBarColors(
         containerColor = containerColor,
@@ -43,7 +43,6 @@ fun NewsTopAppBar(
             Text(
                 text = title,
                 style = MaterialTheme.typography.displayMedium,
-                color = MaterialTheme.colorScheme.onPrimary,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
                 textAlign = TextAlign.Center

@@ -5,4 +5,5 @@ interface AppConfiguration {
     var baseApiUrl: String?
     var buildVersion: String?
     var apiKey: String?
+    var timeout: Long
 }

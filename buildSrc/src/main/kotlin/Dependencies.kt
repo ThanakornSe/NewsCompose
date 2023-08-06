@@ -21,6 +21,7 @@ object Dependencies {
     const val COMPOSE_NAVIGATION = "androidx.navigation:navigation-compose:${Versions.NavigationCompose.NAVIGATION_COMPOSE_VERSION}"
     const val COMPOSE_WINDOW_SIZE_UTIL = "androidx.compose.material3:material3-window-size-class:${Versions.Compose.COMPOSE_MATERIAL_3_VERESION}"
     const val COIL_COMPOSE = "io.coil-kt:coil-compose:${Versions.COIL_COMPOSE_VERSION}"
+    const val COMPOSE_PAGING_3 = "androidx.paging:paging-compose:${Versions.Compose.COMPOSE_PAGING_VERSION}"
 
     const val KOIN_CORE = "io.insert-koin:koin-core:${Versions.Koin.KOIN_ANDROID_VERSION}"
     const val KOIN_ANDROID = "io.insert-koin:koin-android:${Versions.Koin.KOIN_ANDROID_VERSION}"
@@ -115,6 +116,7 @@ fun DependencyHandler.jetpackCompose() {
     implementation(Dependencies.COMPOSE_MATERIAL_2_ICON_EXTENED)
     implementation(Dependencies.COMPOSE_WINDOW_SIZE_UTIL)
     implementation(Dependencies.COMPOSE_LIFECYCLE_RUNTIME)
+    implementation(Dependencies.COMPOSE_PAGING_3)
 }
 
 fun DependencyHandler.retrofit() {
@@ -126,7 +128,7 @@ fun DependencyHandler.retrofit() {
 
 fun DependencyHandler.moshi() {
     implementation(Dependencies.MOSHI)
-    kapt(Dependencies.MOSHI_CODEGEN)
+    ksp(Dependencies.MOSHI_CODEGEN)
 }
 
 fun DependencyHandler.coilCompose() {
@@ -161,8 +163,8 @@ fun DependencyHandler.debugImplementation(depName: String) {
     add("debugImplementation", depName)
 }
 
-private fun DependencyHandler.kapt(depName: String) {
-    add("kapt", depName)
+private fun DependencyHandler.ksp(depName: String) {
+    add("ksp", depName)
 }
 
 private fun DependencyHandler.compileOnly(depName: String) {

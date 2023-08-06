@@ -18,8 +18,7 @@ fun NewsNavigationBackIcon(
     icon: @Composable () -> Unit = {
         Icon(
             painter = painterResource(id = R.drawable.ic_arrow_back_left),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onTertiary
+            contentDescription = null
         )
     },
     onClick: () -> Unit

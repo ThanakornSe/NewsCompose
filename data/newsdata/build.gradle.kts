@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -47,7 +48,6 @@ android {
 dependencies {
     implementation(project(":core:util"))
     implementation(project(":core:data"))
-    implementation(project(":core:ui"))
     implementation(project(":core:network"))
     implementation(project(":core:resource"))
 

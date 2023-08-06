@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -64,6 +65,7 @@ dependencies {
     koin()
 
     jetpackCompose()
+    coilCompose()
     implementation(platform(Dependencies.COMPOSE_BOM))
 
     implementation(Dependencies.TIMBER)

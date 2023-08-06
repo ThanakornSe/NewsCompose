@@ -17,13 +17,15 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
+    primary = colorLightBackgroundPrimary,
     secondary = PurpleGrey40,
     tertiary = Pink40,
     background = colorLightBackgroundDefault,
     onBackground = colorLightBackgroundPrimary,
     surface = colorLightBackgroundSurface,
+    onSecondaryContainer = colorLightBorderDefault,
     onPrimary = colorLightContentDefault,
+    onPrimaryContainer = colorLightContentDefault,
     onSecondary = colorLightContentSecondary,
     onTertiary = colorLightContentLinkPrimary
 )

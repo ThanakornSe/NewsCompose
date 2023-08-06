@@ -17,7 +17,7 @@ fun NavGraphBuilder.newsDetailNavGraph(navController: NavController) {
             route = Route.DetailScreenFragment.route,
             arguments = listOf(
                 navArgument(DETAIL_ARG_NEWS_ID) {
-                    type = NavType.IntType
+                    type = NavType.StringType
                 }
             )
         ) { backstackEntry ->

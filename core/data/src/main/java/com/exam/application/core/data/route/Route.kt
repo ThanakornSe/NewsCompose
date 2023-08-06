@@ -11,7 +11,7 @@ sealed class Route(val route: String) {
     object NewsFeedFragment : Route(NEWS_FEED_FRAGMENT)
     object DetailScreenNavGraph : Route(DETAIL_SCREEN_NAV_GRAPH)
     object DetailScreenFragment : Route("$DETAIL_SCREEN_FRAGMENT/{$DETAIL_ARG_NEWS_ID}") {
-        fun createRoute(newsId: Int) = "$DETAIL_SCREEN_FRAGMENT/$newsId"
+        fun createRoute(newsId: String) = "$DETAIL_SCREEN_FRAGMENT/$newsId"
     }
 
 }
