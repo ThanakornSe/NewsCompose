@@ -19,6 +19,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
@@ -26,6 +31,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.exam.application.core.base.BaseUiState
 import com.exam.application.core.resource.theme.AppTheme
 import com.exam.application.core.ui.view.compose.NewsNavigationBackIcon
@@ -40,14 +46,19 @@ import com.exam.application.resource.R
 fun NewsFeedScreen(
     modifier: Modifier = Modifier,
     uiState: BaseUiState<NewsFeedUiState>,
+    onShareClick: (String) -> Unit = {},
     onClickToDetailScreen: (String) -> Unit = {},
 ) {
 
     val focusManager = LocalFocusManager.current
+    val newsItem = uiState.mainUiState?.articleList?.collectAsLazyPagingItems()
+
+    var searchQuery by rememberSaveable { mutableStateOf("") }
 
     NewsScaffold(
         modifier = modifier
-            .fillMaxSize().pointerInput(Unit) {
+            .fillMaxSize()
+            .pointerInput(Unit) {
                 detectTapGestures(onTap = {
                     focusManager.clearFocus()
                 })
@@ -81,9 +92,10 @@ fun NewsFeedScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp, vertical = 8.dp),
-                value = "",
+                value = searchQuery,
                 onValueChange = {
-
+                    searchQuery = it
+                    uiState.mainUiState?.searchNews?.invoke(searchQuery)
                 },
                 label = {
                     Text(
@@ -101,28 +113,30 @@ fun NewsFeedScreen(
                 }
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
-
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                uiState.mainUiState?.articleList?.let { articleList ->
-                    items(articleList) { data ->
-                        NewsFeedContentCard(
-                            title = data.title,
-                            author = data.author,
-                            desc = data.description,
-                            sourceName = data.sourceName,
-                            thumbNailImage = data.urlToImage,
-                            timeAgo = data.publishedAt,
-                            url = data.url,
-                            seeDetailActionClick = {
-                                onClickToDetailScreen.invoke(it)
-                            },
-                            onShareClick = {}
-                        )
+                newsItem?.let { articleList ->
+                    items(articleList.itemCount) { index ->
+                        articleList[index]?.let { data ->
+                            NewsFeedContentCard(
+                                title = data.title,
+                                author = data.author,
+                                desc = data.description,
+                                sourceName = data.sourceName,
+                                thumbNailImage = data.urlToImage,
+                                timeAgo = data.publishedAt,
+                                url = data.url,
+                                seeDetailActionClick = {
+                                    onClickToDetailScreen.invoke(it)
+                                },
+                                onShareClick = {
+                                    onShareClick(it)
+                                }
+                            )
+                        }
                     }
                 }
             }

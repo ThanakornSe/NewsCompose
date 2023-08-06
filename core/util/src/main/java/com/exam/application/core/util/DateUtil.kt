@@ -1,5 +1,7 @@
 package com.exam.application.core.util
 
+import android.content.Context
+import android.text.format.DateUtils
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.ZoneId
@@ -9,52 +11,24 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-
-fun Date.formatDayMonthYear(): String {
-    return SimpleDateFormat("dd/MM/yyyy", Locale.US).format(this)
-}
-
-fun Date.formatDateTime(): String {
-    return SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US).format(this)
-}
-
-fun Date.formatNotificationDateTime(): String {
-    return SimpleDateFormat("dd/MM/yyyy • HH:mm น.", Locale.US).format(this)
-}
-
-fun Date.daysBetweenToday(): Int {
-    return ChronoUnit.DAYS.between(LocalDate.now(), this.toLocalDate()).toInt()
-}
-
-fun Date.daysPlus(num: Long): String {
-    val day = this.toLocalDate().plusDays(num)
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-    return day.format(formatter)
-}
-
-fun Date.toLocalDate(): LocalDate {
-    return this.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-}
-
-fun String.toDate(): Date? {
+fun String.timeAgo(): String? {
     return try {
-        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.US)
-        formatter.parse(this)
+        var input1 = this
+        val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz")
+        input1 = if (input1.endsWith("Z")) {
+            input1.substring(0, input1.length - 1) + "GMT-00:00"
+        } else {
+            val inset = 6
+            val s0 = input1.substring(0, input1.length - inset)
+            val s1 = input1.substring(input1.length - inset, input1.length)
+            s0 + "GMT" + s1
+        }
+
+        val date: Long = df.parse(input1).time
+        val now = System.currentTimeMillis()
+        val ago = DateUtils.getRelativeTimeSpanString(date, now, DateUtils.MINUTE_IN_MILLIS)
+        ago.toString()
     } catch (e: Exception) {
         null
     }
-}
-
-fun generateNotificationIdByTime(): Int {
-    return try {
-        SimpleDateFormat("ddHHmmss", Locale.US).format(Date()).toInt()
-    } catch (e: Exception) {
-        1
-    }
-}
-
-fun getCurrentDate(): String {
-    val calendar = Calendar.getInstance()
-    val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
-    return dateFormat.format(calendar.time)
 }

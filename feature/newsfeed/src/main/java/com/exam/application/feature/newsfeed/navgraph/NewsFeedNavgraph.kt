@@ -14,11 +14,7 @@ fun NavGraphBuilder.newsFeedNavGraph(navController: NavController) {
     navigation(startDestination = NEWS_FEED_FRAGMENT, route = Route.NewsFeedNavGraph.route) {
         composable(route = Route.NewsFeedFragment.route) {
             NewsFeedFragment(
-                onClickToDetailScreen = { newsId ->
-                    navController.navigate(
-                        Route.DetailScreenFragment.createRoute(newsId)
-                    )
-                }
+                navController = navController
             )
         }
     }

@@ -5,8 +5,8 @@ import retrofit2.http.Query
 
 interface NewsFeedRepository {
     suspend fun getNewsFeed(
-        searchQuery: String,
+        searchQuery: String = "",
         countryCode: String = "us",
         pageNumber: Int = 1
-    ):NewsApiModel
+    ): NewsApiModel
 }

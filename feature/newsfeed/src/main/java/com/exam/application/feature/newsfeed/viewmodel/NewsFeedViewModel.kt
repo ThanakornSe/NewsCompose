@@ -1,15 +1,22 @@
 package com.exam.application.feature.newsfeed.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.map
 import com.exam.application.core.base.BaseViewModel
+import com.exam.application.core.util.timeAgo
 import com.exam.application.domain.newsfeed.usecase.GetNewsFeedUseCase
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 
 data class NewsFeedUiState(
-    val articleList: List<ArticleCardUiState>? = null
+    val articleList: Flow<PagingData<ArticleCardUiState>>? = null,
+    val searchNews: (String) -> Unit = {}
 )
 
 data class ArticleCardUiState(
@@ -25,39 +32,40 @@ data class ArticleCardUiState(
 
 class NewsFeedViewModel(
     private val getNewsFeedUseCase: GetNewsFeedUseCase
-): BaseViewModel<NewsFeedUiState>() {
+) : BaseViewModel<NewsFeedUiState>() {
 
     init {
-        initNewsFeed()
+        getNewsFeed()
     }
-    private fun initNewsFeed() {
+
+    private fun getNewsFeed(searchText: String = "") {
         viewModelScope.launch {
             try {
                 setLoading(true)
 
-                val result = getNewsFeedUseCase.getNewsFeed(
-                    searchQuery = "",
-                    countryCode = "us",
-                    pageNumber = 1
-                )
+                val result: Flow<PagingData<ArticleCardUiState>> =
+                    getNewsFeedUseCase.getNewsFeed(searchQuery = searchText).map { data ->
+                        data.map {
+                            ArticleCardUiState(
+                                author = it.author,
+                                content = it.content,
+                                description = it.description,
+                                publishedAt = it.publishedAt?.timeAgo(),
+                                sourceName = it.sourceModel?.name,
+                                title = it.title,
+                                url = it.url,
+                                urlToImage = it.urlToImage
+                            )
+                        }
+                    }.cachedIn(viewModelScope)
 
                 setLoading(false)
 
                 _uiState.update { currentState ->
                     currentState.copy(
                         mainUiState = NewsFeedUiState(
-                            articleList = result.articleModels?.map {
-                                ArticleCardUiState(
-                                    author = it.author,
-                                    content = it.content,
-                                    description = it.description,
-                                    publishedAt = it.publishedAt,
-                                    sourceName = it.sourceModel?.name,
-                                    title = it.title,
-                                    url = it.url,
-                                    urlToImage = it.urlToImage
-                                )
-                            }
+                            articleList = result,
+                            searchNews = { getNewsFeed(it) }
                         )
                     )
                 }
@@ -67,5 +75,7 @@ class NewsFeedViewModel(
             }
         }
     }
+
+
 
 }

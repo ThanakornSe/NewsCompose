@@ -22,7 +22,7 @@ fun NavGraphBuilder.newsDetailNavGraph(navController: NavController) {
             )
         ) { backstackEntry ->
             val newsId = backstackEntry.arguments?.getInt(DETAIL_ARG_NEWS_ID)
-            requireNotNull(newsId) { "gamesId parameter wasn't found. Please make sure it's set!" }
+            requireNotNull(newsId) { "News id parameter wasn't found. Please make sure it's set!" }
             DetailFragment(id = newsId)
         }
     }

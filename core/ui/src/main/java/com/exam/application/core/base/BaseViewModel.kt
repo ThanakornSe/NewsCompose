@@ -38,6 +38,23 @@ open class BaseViewModel<T> : ViewModel() {
         }
     }
 
+    fun openIntent(intent: Intent) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                openIntent = intent
+            )
+        }
+    }
+
+    fun clearOpenIntent() {
+        _uiState.update { currentState ->
+            currentState.copy(
+                openIntent = null
+            )
+        }
+    }
+
+
 
     fun clearErrorMessage() {
         _uiState.update { currentState ->

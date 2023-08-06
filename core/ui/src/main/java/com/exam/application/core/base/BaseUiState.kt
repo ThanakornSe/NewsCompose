@@ -8,4 +8,5 @@ data class BaseUiState<T>(
     val errorMessage: String? = null,
     val navigation: NavigationRouteUiState? = null,
     val mainUiState: T? = null,
+    val openIntent: Intent? = null,
 )

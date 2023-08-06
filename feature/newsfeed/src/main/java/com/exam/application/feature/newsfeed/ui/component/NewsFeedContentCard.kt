@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
+import com.exam.application.core.data.route.Route
 import com.exam.application.core.resource.theme.AppTheme
 import com.exam.application.resource.R
 
@@ -110,7 +111,7 @@ fun NewsFeedContentCard(
                             .clip(RoundedCornerShape(8.dp))
                             .clickable {
                                 title?.let {
-                                    seeDetailActionClick(it)
+                                    seeDetailActionClick(Route.DetailScreenFragment.createRoute(it))
                                 }
                             },
                         model = null,
@@ -151,7 +152,7 @@ fun NewsFeedContentCard(
                 .padding(horizontal = 16.dp)
                 .clickable {
                     title?.let {
-                        seeDetailActionClick(it)
+                        seeDetailActionClick(Route.DetailScreenFragment.createRoute(it))
                     }
                 },
             text = title ?: "",
@@ -198,10 +199,7 @@ fun NewsFeedContentCard(
 
             Row(
                 modifier = Modifier
-                    .clip(CircleShape)
-                    .clickable {
-
-                    },
+                    .clip(CircleShape),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(

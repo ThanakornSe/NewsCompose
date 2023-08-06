@@ -7,6 +7,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.arudo.jetpackcompose.fragment.detail.screen.DetailScreen
 import com.exam.application.core.resource.theme.AppTheme
 
@@ -14,7 +16,8 @@ import com.exam.application.core.resource.theme.AppTheme
 @Composable
 fun DetailFragment(
     modifier: Modifier = Modifier,
-    id: Int = -1,
+    id: String? = null,
+    navController: NavController = rememberNavController()
 ) {
 
     Surface(

@@ -53,6 +53,8 @@ dependencies {
     coroutine()
     lifecycle()
     koin()
+    jetpackCompose()
+    appCompat()
 
     retrofit()
     implementation(platform(Dependencies.OKHTTP_BOM))
