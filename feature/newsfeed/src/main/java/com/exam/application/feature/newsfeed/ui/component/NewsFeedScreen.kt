@@ -31,6 +31,7 @@ import com.exam.application.core.resource.theme.AppTheme
 import com.exam.application.core.ui.view.compose.NewsScaffold
 import com.exam.application.core.ui.view.compose.NewsTopAppBar
 import com.exam.application.core.ui.view.compose.NewsTopAppBarColors
+import com.exam.application.feature.newsfeed.viewmodel.ArticleCardUiState
 import com.exam.application.feature.newsfeed.viewmodel.NewsFeedUiState
 import com.exam.application.resource.R
 
@@ -40,7 +41,7 @@ fun NewsFeedScreen(
     modifier: Modifier = Modifier,
     uiState: BaseUiState<NewsFeedUiState>,
     onShareClick: (String) -> Unit = {},
-    onClickToDetailScreen: (String, Int) -> Unit = { _, _ -> },
+    onClickToDetailScreen: (ArticleCardUiState) -> Unit = { _ -> },
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -116,8 +117,8 @@ fun NewsFeedScreen(
                                 timeAgo = data.publishedAt,
                                 url = data.url,
                                 page = data.page,
-                                seeDetailActionClick = { id, page ->
-                                    onClickToDetailScreen.invoke(id, page)
+                                seeDetailActionClick = {
+                                    onClickToDetailScreen.invoke(data)
                                 },
                                 onShareClick = {
                                     onShareClick(it)

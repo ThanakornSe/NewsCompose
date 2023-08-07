@@ -49,7 +49,7 @@ fun NewsFeedContentCard(
     timeAgo: String? = null,
     url: String? = null,
     page: Int? = null,
-    seeDetailActionClick: (String, Int) -> Unit = { id, page ->  },
+    seeDetailActionClick: () -> Unit = { },
     onShareClick: (String) -> Unit = {}
 ) {
 
@@ -126,7 +126,7 @@ fun NewsFeedContentCard(
                             .clip(RoundedCornerShape(8.dp))
                             .clickable {
                                 title?.let {
-                                    seeDetailActionClick(it,page ?: 1)
+                                    seeDetailActionClick()
                                 }
                             },
                         model = thumbNailImage,
@@ -148,7 +148,7 @@ fun NewsFeedContentCard(
                 .padding(horizontal = 16.dp)
                 .clickable {
                     title?.let {
-                        seeDetailActionClick(it,page ?: 1)
+                        seeDetailActionClick()
                     }
                 },
             text = title ?: "",
@@ -167,7 +167,7 @@ fun NewsFeedContentCard(
                 .padding(horizontal = 16.dp)
                 .clickable {
                     title?.let {
-                        seeDetailActionClick(it,page ?: 1)
+                        seeDetailActionClick()
                     }
                 },
             style = MaterialTheme.typography.bodyMedium,

@@ -9,8 +9,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class NewsDetailViewModel(
-    private val articleId: String? = null,
-    private val page: Int? = null,
+    private val articleId: ArticleCardUiState? = null,
     private val getNewsDetailUseCase: GetNewsDetailUseCase
 ) : BaseViewModel<ArticleCardUiState>() {
 
@@ -22,22 +21,19 @@ class NewsDetailViewModel(
         viewModelScope.launch {
             try {
 
-                val result = getNewsDetailUseCase.getNewsDetail(
-                    articleId ?: "",
-                    page = page ?: 1
-                )
+                val result = articleId
 
                 _uiState.update { currentState ->
                     currentState.copy(
                         mainUiState = ArticleCardUiState(
-                            author = result.author,
-                            content = result.content,
-                            description = result.description,
-                            publishedAt = result.publishedAt?.timeAgo(),
-                            sourceName = result.sourceModel?.name,
-                            title = result.title,
-                            url = result.url,
-                            urlToImage = result.urlToImage
+                            author = result?.author,
+                            content = result?.content,
+                            description = result?.description,
+                            publishedAt = result?.publishedAt?.timeAgo(),
+                            sourceName = result?.sourceName,
+                            title = result?.title,
+                            url = result?.url,
+                            urlToImage = result?.urlToImage
                         )
                     )
                 }

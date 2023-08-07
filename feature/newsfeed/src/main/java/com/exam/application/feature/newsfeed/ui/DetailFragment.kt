@@ -10,7 +10,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.exam.application.core.resource.theme.AppTheme
 import com.exam.application.core.util.BaseViewModelCommonCompose
+import com.exam.application.domain.newsfeed.model.ArticleModel
 import com.exam.application.feature.newsfeed.ui.component.DetailScreen
+import com.exam.application.feature.newsfeed.viewmodel.ArticleCardUiState
 import com.exam.application.feature.newsfeed.viewmodel.NewsDetailViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -19,10 +21,9 @@ import org.koin.core.parameter.parametersOf
 @Composable
 fun DetailFragment(
     modifier: Modifier = Modifier,
-    id: String? = null,
-    page: Int? = null,
+    id: ArticleCardUiState? = null,
     viewModel: NewsDetailViewModel = koinViewModel {
-        parametersOf(id, page)
+        parametersOf(id)
     },
     navController: NavController = rememberNavController()
 ) {

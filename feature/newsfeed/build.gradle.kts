@@ -63,6 +63,8 @@ dependencies {
     coroutine()
     lifecycle()
     koin()
+    moshi()
+    retrofit()
 
     jetpackCompose()
     coilCompose()
