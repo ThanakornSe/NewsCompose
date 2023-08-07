@@ -9,6 +9,7 @@ import com.exam.application.core.resource.ResourcesProvider
 import com.exam.application.core.util.timeAgo
 import com.exam.application.domain.newsfeed.usecase.GetNewsFeedUseCase
 import com.exam.application.resource.R
+import com.squareup.moshi.JsonClass
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
@@ -22,6 +23,7 @@ data class NewsFeedUiState(
     val toolbarTitleFeed: String? = null
 )
 
+@JsonClass(generateAdapter = true)
 data class ArticleCardUiState(
     val author: String? = null,
     val content: String? = null,

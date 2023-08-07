@@ -12,5 +12,5 @@ import org.koin.dsl.module
 val newsFeedFeatureModule = module {
     includes(coreResourceModule, newsDataModule, newsFeedDomainModule)
     viewModel { NewsFeedViewModel(get(), get()) }
-    viewModel { params -> NewsDetailViewModel(params[0], params[1], get()) }
+    viewModel { params -> NewsDetailViewModel(params[0], get()) }
 }

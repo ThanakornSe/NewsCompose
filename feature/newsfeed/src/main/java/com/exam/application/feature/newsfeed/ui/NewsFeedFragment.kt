@@ -14,6 +14,7 @@ import com.exam.application.core.resource.theme.AppTheme
 import com.exam.application.core.util.BaseViewModelCommonCompose
 import com.exam.application.domain.newsfeed.model.ArticleModel
 import com.exam.application.feature.newsfeed.ui.component.NewsFeedScreen
+import com.exam.application.feature.newsfeed.viewmodel.ArticleCardUiState
 import com.exam.application.feature.newsfeed.viewmodel.NewsFeedViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -22,7 +23,7 @@ import org.koin.androidx.compose.koinViewModel
 fun NewsFeedFragment(
     modifier: Modifier = Modifier,
     viewModel: NewsFeedViewModel = koinViewModel(),
-    clickToRoute: (String, Int) -> Unit = { _, _ -> },
+    clickToRoute: (ArticleCardUiState) -> Unit = { },
     navController: NavController = rememberNavController()
 ) {
 
@@ -33,7 +34,7 @@ fun NewsFeedFragment(
     NewsFeedScreen(
         modifier = Modifier,
         uiState = uiState,
-        onClickToDetailScreen = { id, page -> clickToRoute(id, page) },
+        onClickToDetailScreen = { id -> clickToRoute(id) },
         onShareClick = {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
