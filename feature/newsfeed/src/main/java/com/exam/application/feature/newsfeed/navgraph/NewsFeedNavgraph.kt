@@ -29,6 +29,8 @@ fun NavGraphBuilder.newsFeedNavGraph(navController: NavController) {
             )
         }
 
+        //Update
+
         composable(
             route = Route.DetailScreenFragment.route,
             arguments = listOf(
