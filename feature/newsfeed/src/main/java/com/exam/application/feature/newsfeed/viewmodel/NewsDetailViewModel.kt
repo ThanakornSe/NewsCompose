@@ -29,7 +29,7 @@ class NewsDetailViewModel(
                             author = result?.author,
                             content = result?.content,
                             description = result?.description,
-                            publishedAt = result?.publishedAt?.timeAgo(),
+                            publishedAt = result?.publishedAt,
                             sourceName = result?.sourceName,
                             title = result?.title,
                             url = result?.url,
